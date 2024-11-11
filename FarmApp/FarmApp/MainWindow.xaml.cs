@@ -1,24 +1,32 @@
-﻿using System.Text;
+﻿using BusinessLogic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FarmApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            DataManager dataManager = new DataManager();
+
+            // Заповнення бази даних тестовими даними
+            dataManager.PopulateDatabase();
+
+            // Отримуємо дані з таблиць
+            var userData = dataManager.ShowTableData("User");
+            var cropData = dataManager.ShowTableData("Crop");
+            var fertilizerData = dataManager.ShowTableData("Fertilizer");
+            var eventData = dataManager.ShowTableData("Event");
+
+            // Виводимо дані у TextBox (OutputTextBox)
+            OutputTextBox.Text = $"User Data:\n{userData}\n\n" +
+                                 $"Crop Data:\n{cropData}\n\n" +
+                                 $"Fertilizer Data:\n{fertilizerData}\n\n" +
+                                 $"Event Data:\n{eventData}";
         }
     }
+
+
+
 }
