@@ -1,12 +1,53 @@
-﻿<Window x:Class="FarmApp.MainWindow"
+﻿<Window x:Class="PresentationLayer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FarmApp"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Farmer Diary" Height="600" Width="800">
+    <DockPanel>
+        <!-- Меню -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Вихід" Click="Exit_Click"/>
+            </MenuItem>
+        </Menu>
 
-    </Grid>
+        <!-- Основний вміст -->
+        <Grid>
+            <TabControl Margin="10">
+                <!-- Вкладка Акаунт -->
+                <TabItem Header="Акаунт">
+                    <StackPanel Margin="10">
+                        <!-- Секція для логіну -->
+                        <StackPanel x:Name="LoginContent" Visibility="Visible">
+                            <Label Content="Email:"/>
+                            <TextBox x:Name="EmailTextBox" Width="200" Margin="0,0,0,10"/>
+                            <Label Content="Пароль:"/>
+                            <PasswordBox x:Name="PasswordTextBox" Width="200" Margin="0,0,0,10"/>
+                            <Button Content="Реєстрація" Click="Register_Click" Width="200" Margin="0,10"/>
+                            <Button Content="Вхід" Click="Login_Click" Width="200"/>
+                        </StackPanel>
+
+                        <!-- Секція для Logout -->
+                        <StackPanel x:Name="LogoutContent" Visibility="Collapsed">
+                            <TextBlock Text="Ви залогінені як:" Margin="0,0,0,10"/>
+                            <TextBlock x:Name="LoggedInEmail" FontWeight="Bold" Margin="0,0,0,10"/>
+                            <Button Content="Вийти" Click="Logout_Click" Width="200" Margin="0,10"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Вкладка Розрахунок зерна та добрив -->
+                <TabItem Header="Розрахунок зерна та добрив">
+                    <StackPanel Margin="10">
+                        <Label Content="Площа (м²):"/>
+                        <TextBox x:Name="AreaTextBox" Width="200" Margin="0,0,0,10"/>
+                        <Label Content="Маса 1000 насінин (г):"/>
+                        <TextBox x:Name="ThousandSeedWeightTextBox" Width="200" Margin="0,0,0,10"/>
+                        <Label Content="Бажана густота стояння (шт/м²):"/>
+                        <TextBox x:Name="DesiredDensityTextBox" Width="200" Margin="0,0,0,10"/>
+                        <Button Content="Розрахувати зерно та добрива" Click="CalculateGrainAndFertilizer_Click" Width="200" Margin="0,10"/>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
 </Window>
