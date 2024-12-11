@@ -85,6 +85,32 @@ namespace DataAccessLayer
             }
         }
 
+        public int GetUserId(string email)
+        {
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT UserID FROM User WHERE Email = @Email";
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return Convert.ToInt32(reader["UserID"]);
+                        }
+                        else
+                        {
+                            throw new Exception("Користувач не знайдений.");
+                        }
+                    }
+                }
+            }
+        }
+
+
         // Перевірка хешу пароля
         private bool VerifyPassword(string password, string storedHash)
         {
