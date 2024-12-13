@@ -70,6 +70,24 @@ namespace PresentationLayer
             MessageBox.Show("Ви успішно вийшли з акаунту.");
             UpdateUI();
         }
+        private void ShowData_Click(object sender, RoutedEventArgs e)
+        {
+            var cropData = dataManager.GetTableData("Crop");
+
+            string result = "Дані з таблиці Crop:\n";
+            foreach (var row in cropData)
+            {
+                foreach (var column in row)
+                {
+                    result += $"{column.Key}: {column.Value}\t";
+                }
+                result += "\n";
+            }
+
+            MessageBox.Show(result, "Таблиця Crop");
+
+        }
+
 
         private void CalculateGrainAndFertilizer_Click(object sender, RoutedEventArgs e)
         {
