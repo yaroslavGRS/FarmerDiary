@@ -9,8 +9,8 @@ namespace DataAccessLayer
 
         public DatabaseService()
         {
-            // Замініть на свій рядок підключення
-            connectionString = "Server=localhost;Database=FarmerDiary;User=root;Password=yarik1311;";
+            
+            connectionString = "Server=localhost;Database=farmerdiary;User=root;Password=yarik1311;";
         }
 
         public MySqlConnection GetConnection()

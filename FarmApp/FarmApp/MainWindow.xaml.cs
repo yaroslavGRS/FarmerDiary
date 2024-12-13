@@ -84,7 +84,7 @@ namespace PresentationLayer
                         // Розрахунок зерна
                         double grainAmount = dataManager.CalculateGrain(desiredDensity, thousandSeedWeight, area);
 
-                        // Розрахунок добрив (згідно вашої формули)
+                        // Розрахунок добрив
                         double yieldGoal = 6; // т/га
                         double nitrogenContentInSoil = 20; // кг/га
                         double nitrogenUtilizationFactor = 0.6;
